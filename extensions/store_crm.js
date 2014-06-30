@@ -673,7 +673,9 @@ This is used to get add an array of skus, most likely for a product list.
 						},'immutable');
 					_app.model.destroy("buyerProductListDetail|"+listid); //destroy the list in memory so the next time we visit the list page, a new copy is fetched.
 					_app.model.dispatchThis('immutable');
-					window[_app.vars.analyticsPointer]('send','event','Manage buyer list','User Event','item removed');
+					if(_gaq)	{
+						_gaq.push(['_trackEvent','Manage buyer list','User Event','item removed',pid]);
+						}
 					}
 				else	{
 					$('#globalMessaging').anymessage({"message":"In store_crm.e.productByerListRemoveExec, either unable to ascertain pid ["+pid+"] and/or buyerlistid ["+listid+"].","gMessage":true});
@@ -684,8 +686,8 @@ This is used to get add an array of skus, most likely for a product list.
 			//add this as submit action on the form.
 			productReviewSubmit : function($ele,p)	{
 				p.preventDefault();
-				var $form = $ele.closest('form'); //this way, $ele can be a button within the form or an onSubmit action on the form itself.
-				if(_app.u.validateForm($form))	{
+				var $form = $ele.closest('form'); //this way, $ele can be a button within the form or a onSubmit action on the form itself.
+				if(_app.u.validateForm($ele))	{
 					var sfo = $form.serializeJSON();
 					if(sfo.pid)	{
 						sfo._cmd = "appReviewAdd";

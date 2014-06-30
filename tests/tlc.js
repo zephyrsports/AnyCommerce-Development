@@ -1,6 +1,7 @@
 function loadGrammar()	{
 	console.log("Attempt to fetch the grammar file");
-	return $.ajax({
+
+	$.ajax({
 		'url' : 'resources/pegjs-grammar-20140203.pegjs', //append release to eliminate caching on new releases.
 		'dataType' : 'html',
 		'error' : function()	{
@@ -26,9 +27,6 @@ function loadGrammar()	{
 			}
 		});
 	}
-
-
-
 //dump is used in tlc 
 function dump(v)	{
 	if(typeof console != 'undefined')	{console.log(v)}
@@ -44,7 +42,6 @@ function runTests()	{
 		'epochts' : 1395787429,
 		'number' : 10,
 		'html' : "<h1>This is some html</h1><p>Isn't it wonderful</p>",
-		'tag' : "<div>testing</div>",
 		'wiki' : "= This is a wiki h1 =",
 		'wiki2' : "=This is a wiki h1=",
 //		'undefined' : undefined,  do NOT comment this out.  It's here to serve as a reminder that this is called but should NOT be defined. allows for testing on an undefined value.
@@ -53,14 +50,9 @@ function runTests()	{
 		'small-array' : ["frank","albert","tom","harry"],
 		'small-hash' : {'name':'ron','nickname' : 'tater salad'},
 		'price' : 24.95,
-		'decimal' : 18.9,
-		'negative' : -3,
-		'negative-string' : '-5.23',
-		'cents' : .71,
 		'boolean-true' : true,
 		'boolean-false' : false,
-		'string-false' : 'false',
-		'uppercase' : 'HAN'
+		'string-false' : 'false'
 		}
 
 	$('#sample-template').tlc({'verb':'translate','dataset':dataset});
@@ -118,8 +110,6 @@ function runTests()	{
 			}); //loop
 		//now run the 'unique' tests.
 		ok($('#child-gets-replaced').html() == 'bob', "replace" );
-		ok($('#child-gets-replaced2').text() == 'testing', "replace 2" );
-		ok($.trim($('#this-should-be-empty').html()) == '', "remove" );
 		});
 	test( "TLC Formats", function() {
 		$("[data-testtype]",'#format-tests').each(function(index){
