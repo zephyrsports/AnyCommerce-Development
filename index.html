@@ -216,7 +216,10 @@ $(document).ready(function(){
 		</a>
 		</nav>
 		
-		<div id='shopNowLink'>Shop <span class='arrow-down'></span></div><!-- hidden by default. on click, shows tier 1 categories -->		
+		<div id='shopNowLink'>Shop <span class='arrow-down'></span></div><!-- hidden by default. on click, shows tier 1 categories -->
+		<div class="shopButtonAttentionArrowCont displayNone" onClick="$('.shopButtonAttentionArrowCont').data('clickOff',true).append();">
+        	<img src="images/Red-ARROW-white-stroke--App_ShopButton_helper---70x200.png" />
+		</div>
 		<div id='tier1catContainer'>
 			<button title='close'>X</button>
 			<nav id='tier1categories' class='mastHeadMenu'></nav>

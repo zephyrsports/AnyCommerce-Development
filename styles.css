@@ -191,6 +191,14 @@ h5	{font-size:1.03em; color:#666; margin:0;}
 #tier1categories img	{float:left; margin-right:.5em;}
 #tier1categories li a	{text-decoration:none;}
 
+/*Shop button attention grabber arrow*/
+.shopButtonAttentionArrowCont{
+	left: 60px;
+    position: absolute;
+    top: 107px;
+    z-index: 10000;
+}
+
 
 
 
