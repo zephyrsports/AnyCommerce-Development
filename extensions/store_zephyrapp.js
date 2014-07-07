@@ -237,12 +237,29 @@ var store_zephyrapp = function(_app) {
 
 //bind a click action for the dropdown on the shop link.
 				$('#shopNowLink').on('click',function(){
-					$('#tier1catContainer').slideDown();
-					$( document ).one( "click", function() {
+					$(".shopButtonAttentionArrowCont").hide();
+					$('.shopButtonAttentionArrowCont').data('clickOff',true).append();
+					
+					if($('#tier1catContainer').data('sliderState')){}
+					else{
+						$('#tier1catContainer').data('sliderState',false).append();
+					}
+					
+					if($('#tier1catContainer').data('sliderState') === false){
+						$('#tier1catContainer').slideDown();
+						$('#tier1catContainer').data('sliderState',true).append();
+					}
+					else if($('#tier1catContainer').data('sliderState') === true){
+						$('#tier1catContainer').slideUp();
+						$('#tier1catContainer').data('sliderState',false).append();
+					}
+										
+					/*$( document ).one( "click", function() {
 						$('#tier1catContainer').slideUp();
 						});
+					*/
 					return false;
-					});
+				});
 
 
 			//resize is executed continuously as the browser dimensions change. This function allows the code to be executed once, on finish (or pause)
@@ -279,16 +296,23 @@ var store_zephyrapp = function(_app) {
 					_app.templates.homepageTemplate.on('complete.zephyr',function(event,$context,infoObj){
 						$('.shopButtonAttentionArrowCont').data('clickOff',false).append();
 						var loopDuration = 4000;
-						for(i = 0; i < 10; i++){
-							loopDuration = loopDuration + 4000;
-							setTimeout((function (){
-								if($('.shopButtonAttentionArrowCont').data('clickOff') === false){
-									$(".shopButtonAttentionArrowCont").effect("shake");
-								}
-								else{
-									$(".shopButtonAttentionArrowCont").hide();
-								}
-								}), loopDuration);
+						if($(window).width() < 1040)	{
+							for(i = 0; i < 10; i++){
+								loopDuration = loopDuration + 4000;
+								setTimeout((function (){
+									if($(window).width() < 1040)	{
+										if($('.shopButtonAttentionArrowCont').data('clickOff') === false){
+											$(".shopButtonAttentionArrowCont").effect("shake");
+										}
+										else{
+											$(".shopButtonAttentionArrowCont").hide();
+										}
+									}
+									else{
+										$(".shopButtonAttentionArrowCont").hide();
+									}
+									}), loopDuration);
+							}
 						}
 					});
 				},
