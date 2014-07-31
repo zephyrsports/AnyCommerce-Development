@@ -31,7 +31,10 @@ var store_search = function(_app) {
 //a list of the templates used by this extension.
 //if this is a custom extension and you are loading system extensions (prodlist, etc), then load ALL templates you'll need here.
 		"ajaxRequest" : {},
-		"universalFilters":[]
+		"universalFilters":[
+			{"has_child":{"type":"sku","query": {"range":{"available":{"gte":1}}}}}, //only return item w/ inventory
+			{"not" : {"term" : {"tags":"IS_DISCONTINUED"}}}
+		]
 		},
 
 					////////////////////////////////////   CALLS    \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\		
